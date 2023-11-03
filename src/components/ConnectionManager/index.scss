@@ -1,0 +1,15 @@
+.connection-manager {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+
+    &__card {
+        width: 300px;
+
+        &-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

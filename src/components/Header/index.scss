@@ -1,0 +1,48 @@
+.header {
+    width: 100%;
+    height: 70px;
+    padding: 0px 30px;
+    user-select: none;
+    font-weight: 600;
+    background: #fbeed3;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__main {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+
+    &__title {
+        color: #0d6759;
+    }
+
+    &__nav {
+        &-menu {
+            width: fiex;
+            display: flex;
+            gap: 50px;
+        }
+
+        &-link {
+            padding: 15px;
+            &:hover {
+                background-color: #0d6759;
+                border-radius: 3px;
+                color: #ffffea;
+            }
+        }
+    }
+
+    &__logout {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+
+        &:hover {
+            color: #0d6759;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+.login {
+    height: 100vh;
+    font-family: 'Majorant-Regular';
+    background-color: #fbeed3;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__card {
+        width: 600px;
+        padding: 30px;
+
+        &-header {
+            width: 100%;
+            font-family: 'Majorant-Bold';
+            font-size: 1.7rem;
+            color: #0d6759;
+
+            justify-content: center !important;
+            gap: 15px;
+        }
+    }
+    &__button {
+        background-color: #917c67 !important;
+        color: white !important;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+}
