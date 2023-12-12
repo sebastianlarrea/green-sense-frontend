@@ -2,4 +2,8 @@
     display: flex;
     justify-content: center;
     margin-top: 60px;
+
+    &__card {
+        width: 85% !important;
+    }
 }

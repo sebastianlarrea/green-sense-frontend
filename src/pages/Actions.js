@@ -17,7 +17,6 @@ const Actions = () => {
     const showSnackbar = useSnackbar({ delay: 3000, positions: 'top-right', margin: '70px' });
 
     const menu = [
-        { caption: 'Home', href: '/home' },
         { caption: 'Metrics', href: '/metrics' },
         { caption: 'Notifications', href: '/notifications' },
         { caption: 'About', href: '/about' }
@@ -33,27 +32,39 @@ const Actions = () => {
     const handleTemperatureNotification = () => {
         toggleLoading(0);
         axios
-            .post(`${process.env.REACT_APP_API_URL}/notifications/send-alert`, { message: '[19-10-2023 16:18]: La medida de la temperatura es de 37 grados centigrados' })
-            .then(() => { 
-                toggleLoading(0);
-                showSnackbar('The temperature has been successfully notified!');
+            .post(`${process.env.REACT_APP_API_URL}/notifications/send-notification`, { message: 'La medida de la temperatura es de#grados centigrados', topic: 'temperatures', value: 'temperature' })
+            .then(response => { 
+                if (response.data === 'No') {
+                    toggleLoading(0);
+                    showSnackbar('Active the notification for this item', 'warning'); 
+                }
+                else {
+                    toggleLoading(0);
+                    showSnackbar('The temperature has been successfully notified!');
+                }
             });
     };
 
     const handleHumidityNotification = () => {
         toggleLoading(1);
         axios
-            .post(`${process.env.REACT_APP_API_URL}/notifications/send-alert`, { message: '[19-10-2023 16:18]: La medida de la humedad es de 37 grados centigrados' })
-            .then(() => { 
-                toggleLoading(1);
-                showSnackbar('The humidity has been successfully notified!');
+            .post(`${process.env.REACT_APP_API_URL}/notifications/send-notification`, { message: 'La medida de la humedad es de', topic: 'humidity', value: 'humidity' })
+            .then(response => { 
+                if (response.data === 'No') showSnackbar('Active the notification for this item', 'warning');
+                else {
+                    toggleLoading(1);
+                    showSnackbar('The temperature has been successfully notified!');
+                }
             });
     };
 
     const handlePumpActivation = () => {
         setIsDumbActivated(true);
+        axios.post(`${process.env.REACT_APP_API_URL}/mqtt-http/active-valve`, { message: '' })
         setTimeout(() => {
             showSnackbar('The pump has been successfully finished the watered!');
+            axios
+            .post(`${process.env.REACT_APP_API_URL}/notifications/send-alert`, { message: 'The pump has been successfully finished the watered!' }) 
             setIsDumbActivated(false);
         }, 5000);
     };

@@ -4,17 +4,17 @@ import DataChart from '.';
 
 import './index.scss';
 
-const TemperatureChart = ({ socket }) => {
-    const [temperatures, setTemperatures] = useState([]);
+const LevelChart = ({ socket }) => {
+    const [levels, setLevels] = useState([]);
 
     function onGreenSenseEvent(value) {
         const now = new Date();
         const hour = now.getHours().toString().padStart(2, '0');
         const minutes = now.getMinutes().toString().padStart(2, '0');
         const seconds = now.getSeconds().toString().padStart(2, '0');
-        setTemperatures(previous => [
+        setLevels(previous => [
             ...previous, 
-            { data: value.temperature, time:`${hour}:${minutes}:${seconds}`  }
+            { data: value.level, time:`${hour}:${minutes}:${seconds}`  }
         ]);
     }
 
@@ -24,9 +24,9 @@ const TemperatureChart = ({ socket }) => {
     }, [socket]);
 
     return <section className='temperature-chart'>
-        <h2 className='temperature-chart__title'>Temperature</h2>
-        <DataChart data={temperatures.slice(-10)} />
+        <h2 className='temperature-chart__title'>Level</h2>
+        <DataChart data={levels.slice(-10)} />
     </section>
 };
 
-export default TemperatureChart;
+export default LevelChart;

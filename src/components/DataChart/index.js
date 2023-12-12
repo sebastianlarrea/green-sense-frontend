@@ -2,6 +2,11 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tool
 import './index.scss';
 
 const DataChart = ({ data }) => {
+    console.log(data)
+    const maxValue = Math.max(...data.map(entry => entry.data));
+    const buffer = 0.1;
+    const yAxisDomain = [0, Math.ceil(maxValue * (1 + buffer))];
+    console.log(yAxisDomain);
     return  <section className='data-chart'>
         <ResponsiveContainer width="100%" height="100%">
             <LineChart data={data}>
@@ -11,7 +16,7 @@ const DataChart = ({ data }) => {
                 <XAxis dataKey="time" label={{ value: 'Time', position: 'insideBottom', offset: 5, dy: 5 }} height={50}/>
                 <YAxis 
                     label={{ angle: -90, position: 'insideLeft' }} 
-                    domain={[0, 10]}
+                    domain={yAxisDomain}
                 />
             </LineChart>
         </ResponsiveContainer>

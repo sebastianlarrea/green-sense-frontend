@@ -9,7 +9,7 @@ export function MyForm() {
     event.preventDefault();
     setIsLoading(true);
 
-    socket.timeout(500).emit('green-sense-event', value, () => {
+    socket.timeout(500).emit('green-sense-read-sensors', value, () => {
       setIsLoading(false);
     });
   }

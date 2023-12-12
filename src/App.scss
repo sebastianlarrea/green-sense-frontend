@@ -1,5 +1,16 @@
+html, body {
+    margin: 0;
+    background-color: #f9f9f1;
+}
+
+body { 
+    height: 100vh;
+}
+
 .App {
     font-family: 'Majorant-Regular';
+}
+
+.temperature-chart {
     background-color: #f9f9f1;
-    height: 100vh;
 }

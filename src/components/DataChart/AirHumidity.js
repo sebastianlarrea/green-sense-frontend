@@ -4,17 +4,17 @@ import DataChart from '.';
 
 import './index.scss';
 
-const TemperatureChart = ({ socket }) => {
-    const [temperatures, setTemperatures] = useState([]);
+const AirHumidityChart = ({ socket }) => {
+    const [airHumidity, setAirHumiditys] = useState([]);
 
     function onGreenSenseEvent(value) {
         const now = new Date();
         const hour = now.getHours().toString().padStart(2, '0');
         const minutes = now.getMinutes().toString().padStart(2, '0');
         const seconds = now.getSeconds().toString().padStart(2, '0');
-        setTemperatures(previous => [
+        setAirHumiditys(previous => [
             ...previous, 
-            { data: value.temperature, time:`${hour}:${minutes}:${seconds}`  }
+            { data: value.air_humidity, time:`${hour}:${minutes}:${seconds}`  }
         ]);
     }
 
@@ -24,9 +24,9 @@ const TemperatureChart = ({ socket }) => {
     }, [socket]);
 
     return <section className='temperature-chart'>
-        <h2 className='temperature-chart__title'>Temperature</h2>
-        <DataChart data={temperatures.slice(-10)} />
+        <h2 className='temperature-chart__title'>Air Humidity</h2>
+        <DataChart data={airHumidity.slice(-10)} />
     </section>
 };
 
-export default TemperatureChart;
+export default AirHumidityChart;

@@ -18,7 +18,7 @@ export function ConnectionManager() {
   }, [enableSocket]);
 
   return (
-    <div className='connection-manager'>
+    <div className='connection-manager dark'>
       <Card className='connection-manager__card'>
         <CardBody className='connection-manager__card-body'>
           <Switch 

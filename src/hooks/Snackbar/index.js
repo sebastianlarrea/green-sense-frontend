@@ -4,7 +4,7 @@ const useSnackbar = ({ delay, margin, positions }) => {
 
     const [gravity, position] = positions.split('-');
 
-    const showSnackbar = (message) => Toastify({
+    const showSnackbar = (message, type = 'success') => Toastify({
         text: message,
         duration: delay,
         gravity,
@@ -13,7 +13,7 @@ const useSnackbar = ({ delay, margin, positions }) => {
         style: {
           fontFamily: 'Majorant-Regular',
           margin,
-          background: "#0d6759",
+          background: type === 'success' ? "#0d6759" : "#F21161",
         },
         onClick: function(){}
     }).showToast();
